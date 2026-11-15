@@ -1,0 +1,100 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const faqs = [
+  ['Do I need an account?', 'No. You can capture, view, edit, search and export receipts without signing in. If you decline sign-in, your data stays on your device.'],
+  ['Does Receiptly work offline?', 'Yes. Capture, viewing, editing, search and local export work without a network connection. The original file is saved on your device before extraction begins.'],
+  ['What happens when I reach the free scan limit?', 'The free plan includes 10 automatic scans per month. When you reach the limit, automatic extraction pauses. You can still capture receipts, enter details by hand, view your library, export CSV and make a full backup.'],
+  ['Will extraction overwrite my edits?', 'No. If you edit a field, running extraction again keeps your version.'],
+  ['Why is a field highlighted?', 'Fields the app is less than 80% confident about are highlighted so you can check them. A receipt is also marked for review when subtotal plus tax is not within 2% of the total.'],
+  ['What does “total” mean?', 'The total is the final amount paid, not the tax amount.'],
+  ['What happens with duplicate receipts?', 'The app asks whether to keep or merge a possible duplicate. It does not delete anything silently.'],
+  ['Are CSV export and backup free?', 'Yes. CSV export and full ZIP backup stay available on the free plan.'],
+  ['Does a failed backup affect my receipts?', 'No. Your local data stays intact if a backup fails. A new Google Drive backup is verified before an earlier cloud backup is replaced.'],
+  ['What does restore do with receipts I already have?', 'Restore skips receipts whose IDs already exist on the device.'],
+  ['Is Receiptly tax advice?', 'No. Receiptly helps you organize records. Deductibility settings are defaults, not advice. Check your numbers with a qualified tax professional.'],
+];
+
+const fixes = [
+  ['A receipt was not extracted', ['Check whether you have reached the 10 automatic scans for the month. Extraction pauses at the limit, but you can enter details by hand.', 'Extraction needs a network connection. Capture still works offline, so you can retry later.']],
+  ['A field looks wrong', ['Open the receipt and edit the field. Your edit is kept if you run extraction again.', 'Highlighted fields are the ones to check first.']],
+  ['The camera does not open', ['Make sure camera permission is allowed for Receiptly in your Android settings.', 'You can also import an existing file instead.']],
+  ['Moving to a new phone', ['Make a full backup before you switch, and keep the file somewhere safe.', 'Back up before uninstalling. Without a backup, data stored only on the device cannot be recovered.']],
+];
+
+const usage = [
+  'Open the app and add a receipt by camera or import.',
+  'Review the extracted details and correct anything highlighted.',
+  'Pick a category, set deductibility, and link a client or project if needed.',
+  'Export CSV or make a full backup from the reports and settings areas.',
+];
+---
+<MainLayout
+  title="Support"
+  description="Answers to common Receiptly questions: offline use, free scans, edits, duplicates, backup and restore, with basic troubleshooting steps."
+>
+  <section class="top">
+    <div class="wrap">
+      <p class="eyebrow">Support</p>
+      <h1>How can we help?</h1>
+      <p class="lead">Find answers about capturing receipts, extraction, backup and exports. We do not have a published contact channel on this site yet.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap narrow">
+      <h2>Getting started</h2>
+      <ol class="how">{usage.map((u) => <li>{u}</li>)}</ol>
+    </div>
+  </section>
+
+  <section class="sec alt">
+    <div class="wrap narrow">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        {faqs.map(([q, a]) => (
+          <details>
+            <summary>{q}</summary>
+            <p>{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap narrow">
+      <h2>Troubleshooting</h2>
+      <div class="fixes">
+        {fixes.map(([t, items]) => (
+          <article>
+            <h3>{t}</h3>
+            <ul>{(items as string[]).map((i) => <li>{i}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+      <p class="note">Need more help? A support contact has not been published yet. See the <a href="/privacy-policy">Privacy Policy</a> for how your data is handled.</p>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .top{padding:64px 0 40px;background:radial-gradient(800px 300px at 80% -20%,var(--tint),transparent 70%)}
+  .top .wrap{display:grid;gap:16px;max-width:760px}
+  .lead{color:var(--muted);font-size:1.1rem}
+  .sec{padding:56px 0}
+  .alt{background:var(--tint);border-block:1px solid var(--line)}
+  .narrow{max-width:760px}
+  h2{margin-bottom:24px}
+  .how{display:grid;gap:12px;padding-inline-start:24px;color:var(--muted)}
+  .faq{display:grid;gap:10px}
+  details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0 20px}
+  summary{cursor:pointer;font-weight:600;padding:16px 0;min-height:48px;list-style-position:outside}
+  details[open] summary{color:var(--deep)}
+  details p{padding-bottom:18px;color:var(--muted)}
+  .fixes{display:grid;gap:16px}
+  .fixes article{border:1px solid var(--line);border-radius:var(--r);padding:20px 24px;background:var(--surface)}
+  .fixes h3{margin-bottom:8px}
+  .fixes ul{margin:0;padding-inline-start:20px;color:var(--muted);display:grid;gap:6px}
+  .note{margin-top:28px;color:var(--muted)}
+</style>

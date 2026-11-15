@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import icon from '../assets/icon.png';
+import { SITE } from '../config';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = [['/', 'Home'], ['/support', 'Support'], ['/privacy-policy', 'Privacy']];
+---
+<header class="hd">
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label={`${SITE.name} home`}>
+      <Image src={icon} alt="" width={36} height={36} />
+      <span>{SITE.name}</span>
+    </a>
+    <nav aria-label="Main">
+      {links.map(([href, label]) => (
+        <a href={href} aria-current={path === href ? 'page' : undefined}>{label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+<style>
+  .hd{position:sticky;top:0;z-index:20;background:rgba(250,252,251,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font:700 1.2rem var(--serif)}
+  .brand img{border-radius:9px}
+  nav{display:flex;gap:4px}
+  nav a{padding:10px 14px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem;min-height:44px;display:inline-flex;align-items:center}
+  nav a:hover{color:var(--ink);background:var(--tint)}
+  nav a[aria-current]{color:var(--deep);background:var(--tint);font-weight:600}
+  @media (max-width:420px){nav a{padding:10px 10px;font-size:.9rem}.brand span{font-size:1.05rem}}
+</style>

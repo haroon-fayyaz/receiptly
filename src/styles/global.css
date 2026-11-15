@@ -1,0 +1,32 @@
+:root{
+  --bg:#fafcfb; --surface:#fff; --ink:#0f1f19; --muted:#4b5f57; --line:#e2ebe6;
+  --brand:#059669; --brand-d:#047857; --deep:#064e3b; --night:#03281e; --mint:#a7f3d0; --tint:#ecfdf5;
+  --serif:"Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r:14px; --shadow:0 1px 2px rgba(6,78,59,.06),0 12px 32px -12px rgba(6,78,59,.18);
+  --wrap:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--sans);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--brand-d)}
+h1,h2,h3{font-family:var(--serif);line-height:1.1;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.4rem,6vw,4.1rem);font-weight:700}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0}
+.wrap{width:min(100% - 40px,var(--wrap));margin-inline:auto}
+.eyebrow{font:600 .78rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-d)}
+.skip{position:absolute;inset-inline-start:12px;top:-60px;background:var(--deep);color:#fff;padding:10px 14px;border-radius:8px;z-index:50}
+.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border-radius:999px;font-weight:600;text-decoration:none;border:1px solid transparent;transition:transform .15s,background .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 20px -8px rgba(5,150,105,.7)}
+.btn-primary:hover{background:var(--brand-d)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:var(--surface)}
+.btn-light{background:#fff;color:var(--deep)}
+.btn-line{border-color:rgba(255,255,255,.35);color:#fff}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}

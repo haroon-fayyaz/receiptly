@@ -1,0 +1,180 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Phone from '../components/Phone.astro';
+import { SITE } from '../config';
+import desk from '../assets/screens/04-desk.png';
+import add from '../assets/screens/03-add.png';
+import library from '../assets/screens/05-library.png';
+import detail from '../assets/screens/06-detail.png';
+import reports from '../assets/screens/07-reports.png';
+import priv from '../assets/screens/02-private.png';
+
+const features = [
+  ['Capture or import', 'Photograph a receipt with the camera or import an existing file. The original is saved on your device before anything else happens.'],
+  ['Automatic extraction', 'Receipt details are read for you. Fields the app is unsure about are highlighted so you can check them, and a total that does not match its parts is flagged for review.'],
+  ['Your edits are kept', 'Correct any field by hand. Running extraction again never overwrites what you changed.'],
+  ['Searchable library', 'Browse and search every receipt in one place, even without a connection.'],
+  ['Categories and deductibility', 'Sort receipts into categories and mark what is deductible. Categories and defaults come from your country’s data pack.'],
+  ['Clients and projects', 'Attach receipts to the clients and projects they belong to, so billing and bookkeeping line up.'],
+  ['CSV export and full backup', 'Export your receipts to CSV and make a full ZIP backup. Both stay available on the free plan.'],
+  ['Duplicate check', 'If a receipt looks like one you already have, the app asks whether to keep or merge it. Nothing is deleted silently.'],
+];
+
+const steps = [
+  ['Capture', 'Take a photo or import a file. It works offline.'],
+  ['Review', 'Check the extracted details and fix anything highlighted.'],
+  ['Organize', 'Choose a category, mark deductibility, and link a client or project.'],
+  ['Export', 'Send a CSV to your bookkeeper or accountant, or save a full backup.'],
+];
+
+const shots = [
+  [add, 'Add screen with options to scan or import a receipt', 'Add'],
+  [library, 'Receipt library listing saved receipts', 'Library'],
+  [detail, 'Receipt detail screen with extracted fields', 'Detail'],
+  [reports, 'Reports screen with export options', 'Reports'],
+];
+---
+<MainLayout
+  title="Receipt tracker for freelancers and small businesses"
+  description="Receiptly is a local-first receipt manager. Capture receipts offline, organize them by category and client, and export to CSV for bookkeeping and tax time."
+>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="copy">
+        <p class="eyebrow">Receipt manager for freelancers and small businesses</p>
+        <h1>Receipts organized all year. Tax time in one export.</h1>
+        <p class="lead">Capture receipts, sort them by category, client and project, and export clean records for your bookkeeping. Your data stays on your device, and you do not need an account.</p>
+        <div class="cta">
+          {SITE.playStoreUrl && <a class="btn btn-primary" href={SITE.playStoreUrl}>Get it on Google Play</a>}
+          <a class={`btn ${SITE.playStoreUrl ? 'btn-ghost' : 'btn-primary'}`} href="#how">See how it works</a>
+        </div>
+        <ul class="pills" aria-label="Highlights">
+          <li>Works offline</li>
+          <li>No account needed</li>
+          <li>Free CSV export</li>
+        </ul>
+      </div>
+      <div class="visual">
+        <div class="v-main"><Phone src={desk} alt="Receiptly home screen showing a summary of your receipts" width={290} loading="eager" /></div>
+        <div class="v-side"><Phone src={add} alt="Add screen with options to scan or import a receipt" width={220} loading="eager" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="features">
+    <div class="wrap">
+      <p class="eyebrow">Features</p>
+      <h2>Everything you need to keep receipts in order</h2>
+      <div class="grid">
+        {features.map(([t, d]) => (
+          <article class="card"><h3>{t}</h3><p>{d}</p></article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="private">
+    <div class="wrap split">
+      <div class="shot"><Phone src={priv} alt="Screen explaining that receipts stay on your device" width={270} /></div>
+      <div>
+        <p class="eyebrow">Private by design</p>
+        <h2>Your receipts live on your device</h2>
+        <ul class="ticks">
+          <li>Capture, view, edit, search and export all work without a network connection.</li>
+          <li>No sign-in is required to use the app. Declining sign-in keeps your data on the device.</li>
+          <li>Receipt contents are never sent to product analytics, and you can opt out of analytics.</li>
+          <li>Optional Google Drive backup, only if you choose to sign in.</li>
+        </ul>
+        <p class="small">See the <a href="/privacy-policy">Privacy Policy</a> for details.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="how">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2>From paper slip to clean records in four steps</h2>
+      <ol class="steps">
+        {steps.map(([t, d], i) => (
+          <li><span class="n">{i + 1}</span><h3>{t}</h3><p>{d}</p></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec alt" id="screens">
+    <div class="wrap">
+      <p class="eyebrow">Inside the app</p>
+      <h2>A look at Receiptly</h2>
+      <div class="gallery">
+        {shots.map(([src, alt, cap]) => (
+          <figure><Phone src={src} alt={alt} width={230} /><figcaption>{cap}</figcaption></figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>Ready to tidy up your receipts?</h2>
+      <p>Keep your records organized now, so tax time is just an export.</p>
+      <div class="cta c">
+        {SITE.playStoreUrl
+          ? <a class="btn btn-light" href={SITE.playStoreUrl}>Get it on Google Play</a>
+          : <a class="btn btn-light" href="#features">Review the features</a>}
+        <a class="btn btn-line" href="/support">Visit support</a>
+      </div>
+      <p class="disc">Receiptly helps you organize records. It does not provide tax advice.</p>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .hero{background:radial-gradient(900px 400px at 85% -10%,var(--tint),transparent 70%),var(--bg);padding:64px 0 72px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .copy{display:grid;gap:22px;justify-items:start}
+  .lead{font-size:1.15rem;color:var(--muted);max-width:56ch}
+  .cta{display:flex;flex-wrap:wrap;gap:12px}
+  .cta.c{justify-content:center}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+  .pills li{font-size:.85rem;padding:6px 12px;border-radius:999px;background:var(--tint);color:var(--deep);border:1px solid var(--line)}
+  .visual{display:flex;justify-content:center;align-items:flex-end;gap:0;position:relative;min-width:0}
+  .v-side{margin-inline-start:-48px;margin-bottom:-24px;transform:rotate(4deg)}
+  .v-main{transform:rotate(-2deg);z-index:1}
+  .sec{padding:88px 0}
+  .alt{background:var(--tint);border-block:1px solid var(--line)}
+  .sec h2{margin:14px 0 40px;max-width:22ch}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);display:grid;gap:8px;align-content:start}
+  .card p{color:var(--muted);font-size:.97rem}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .split h2{margin-bottom:24px}
+  .shot{display:flex;justify-content:center}
+  .ticks{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:12px}
+  .ticks li{padding-inline-start:30px;position:relative;color:var(--muted)}
+  .ticks li::before{content:"";position:absolute;inset-inline-start:0;top:.4em;width:16px;height:16px;border-radius:50%;background:var(--brand);box-shadow:inset 0 0 0 4px var(--tint),0 0 0 1px var(--brand)}
+  .small{font-size:.92rem;color:var(--muted)}
+  .steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+  .steps li{display:grid;gap:8px;padding:24px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface)}
+  .steps p{color:var(--muted);font-size:.97rem}
+  .n{width:34px;height:34px;border-radius:50%;background:var(--deep);color:#fff;display:grid;place-items:center;font:600 .9rem var(--mono)}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;justify-items:center}
+  figure{margin:0;display:grid;gap:12px;justify-items:center;width:100%}
+  figcaption{font:600 .78rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .final{background:linear-gradient(160deg,var(--deep),var(--night));color:#fff;text-align:center;padding:88px 0}
+  .final .wrap{display:grid;gap:20px;justify-items:center}
+  .final p{color:#cfe9de;max-width:52ch}
+  .final h2{max-width:20ch}
+  .disc{font-size:.85rem;opacity:.8}
+  @media (max-width:860px){
+    .hero{padding:40px 0 56px}
+    .hero-grid,.split{grid-template-columns:1fr;gap:40px}
+    .split .shot{order:2}
+    .sec{padding:64px 0}
+    .v-side{margin-inline-start:-36px}
+  }
+  @media (max-width:420px){
+    .v-side{display:none}
+    .btn{width:100%}
+  }
+</style>

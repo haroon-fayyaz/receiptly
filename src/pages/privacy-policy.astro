@@ -1,0 +1,132 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { SITE } from '../config';
+
+const updated = new Date(SITE.policyUpdated + 'T00:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+const toc = [
+  ['introduction', 'Introduction'],
+  ['information-collected', 'Information we collect'],
+  ['personal-data', 'Personal and automatically collected data'],
+  ['use', 'How we use information'],
+  ['storage', 'Storage'],
+  ['security', 'Security'],
+  ['sharing', 'Sharing and third parties'],
+  ['retention', 'Retention and deletion'],
+  ['cookies', 'Cookies and website'],
+  ['rights', 'Your rights and choices'],
+  ['children', 'Children'],
+];
+---
+<MainLayout
+  title="Privacy Policy"
+  description="How Receiptly handles your data: local-first storage, optional backup, analytics choices, third-party services, retention and your rights."
+>
+  <section class="top">
+    <div class="wrap narrow">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="meta">Last updated: <time datetime={SITE.policyUpdated}>{updated}</time></p>
+    </div>
+  </section>
+
+  <div class="wrap narrow body">
+    <nav class="toc" aria-label="Table of contents">
+      <h2>Contents</h2>
+      <ol>{toc.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ol>
+    </nav>
+
+    <section id="introduction">
+      <h2>Introduction</h2>
+      <p>This policy explains how Receiptly (“we”, “us”) handles information when you use the Receiptly mobile app and this website. Receiptly is a local-first receipt manager: core features work on your device and an account is not required.</p>
+    </section>
+
+    <section id="information-collected">
+      <h2>Information we collect</h2>
+      <ul>
+        <li><strong>Receipts you add.</strong> Photos or files you capture or import, and the details extracted or entered, such as merchant, date, amounts, category, deductibility, client and project. These are stored on your device.</li>
+        <li><strong>Sign-in information, if you choose to sign in.</strong> Sign-in uses Google. It is optional and is used for optional cloud backup.</li>
+        <li><strong>Waitlist email.</strong> If you ask to be notified when a country becomes available, the email you enter for that purpose.</li>
+        <li><strong>Purchase information.</strong> If you subscribe, Google Play Billing handles payment. We do not receive your card details.</li>
+        <li><strong>Usage and device data.</strong> Product analytics events and app-integrity signals, described below.</li>
+      </ul>
+    </section>
+
+    <section id="personal-data">
+      <h2>Personal and automatically collected data</h2>
+      <p>Automatically collected data includes product analytics events (for example, which screens or features are used, with segment and country where specified) collected through Firebase Analytics. We never send receipt contents to product analytics. You can opt out of analytics in the app settings. The app also uses Firebase App Check with Play Integrity to help confirm that requests come from a genuine copy of the app.</p>
+      <p>Receipt images and details may contain personal information, such as names on a receipt. This information is yours; we do not use receipt contents for analytics.</p>
+    </section>
+
+    <section id="use">
+      <h2>How we use information</h2>
+      <ul>
+        <li>To capture, extract, organize, search and export your receipts.</li>
+        <li>To provide optional backup and restore.</li>
+        <li>To manage plans, scan limits and purchases.</li>
+        <li>To understand product usage in aggregate, unless you opt out.</li>
+        <li>To protect the service from abuse.</li>
+        <li>To tell you when a waitlisted country becomes available.</li>
+      </ul>
+    </section>
+
+    <section id="storage">
+      <h2>Storage</h2>
+      <p>Receipts and their original files are saved locally on your device before extraction begins. If you turn on cloud backup, a backup is stored in your own Google Drive. Automatic extraction sends the receipt to an extraction service when you are online. If you are offline or the service fails, your local data is not lost.</p>
+    </section>
+
+    <section id="security">
+      <h2>Security</h2>
+      <p>We use reasonable measures to protect information, including App Check with Play Integrity. No method of storage or transmission is completely secure, and we cannot guarantee absolute security. Keep your device protected and make backups.</p>
+    </section>
+
+    <section id="sharing">
+      <h2>Sharing and third parties</h2>
+      <p>We do not sell your personal information. We rely on these services:</p>
+      <ul>
+        <li><strong>Google</strong> for sign-in and Drive backup, Firebase Analytics and App Check, and Google Play Billing.</li>
+      </ul>
+      <p>These providers have their own privacy policies.</p>
+    </section>
+
+    <section id="retention">
+      <h2>Retention and deletion</h2>
+      <p>Receipts stay on your device until you delete them. Deleted receipts are kept in trash for 30 days before removal. Cloud backups remain in your Google Drive until you delete them there. Uninstalling the app without a backup removes locally stored data.</p>
+    </section>
+
+    <section id="cookies">
+      <h2>Cookies and website</h2>
+      <p>This website is a static site. It has no forms or accounts, and it does not set cookies or load analytics or advertising trackers.</p>
+    </section>
+
+    <section id="rights">
+      <h2>Your rights and choices</h2>
+      <p>You can opt out of analytics, decline sign-in, delete receipts, export your data as CSV or a full backup, and revoke camera permission in Android settings. Depending on where you live, you may have additional rights, such as access, correction or deletion of personal data we hold.</p>
+    </section>
+
+    <section id="children">
+      <h2>Children</h2>
+      <p>Receiptly is intended for people running a business or doing freelance work and is not directed to children.</p>
+    </section>
+
+  </div>
+</MainLayout>
+
+<style>
+  .top{padding:64px 0 24px}
+  .narrow{max-width:760px}
+  .top .narrow{display:grid;gap:14px}
+  .meta{color:var(--muted);margin:0}
+  .body{padding-bottom:72px}
+  .toc{background:var(--tint);border:1px solid var(--line);border-radius:var(--r);padding:20px 24px;margin:16px 0 40px}
+  .toc h2{font-size:1.1rem;margin-bottom:10px}
+  .toc ol{margin:0;padding-inline-start:22px;display:grid;gap:4px;columns:2;column-gap:32px}
+  .toc a{display:inline-block;padding:4px 0}
+  section{scroll-margin-top:84px;margin-bottom:36px}
+  section h2{font-size:1.5rem;margin-bottom:12px}
+  section p,section li{color:var(--muted)}
+  section p+p,section p+ul{margin-top:12px}
+  section ul{padding-inline-start:22px;display:grid;gap:8px;margin:0}
+  section strong{color:var(--ink)}
+  @media (max-width:600px){.toc ol{columns:1}}
+</style>

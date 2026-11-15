@@ -1,0 +1,13 @@
+---
+import { Image } from 'astro:assets';
+interface Props { src: ImageMetadata; alt: string; width?: number; loading?: 'eager' | 'lazy' }
+const { src, alt, width = 280, loading = 'lazy' } = Astro.props;
+---
+<div class="phone" style={`--w:${width}px`}>
+  <Image src={src} alt={alt} width={width * 2} loading={loading} widths={[width, width * 2]} sizes={`${width}px`} />
+</div>
+<style>
+  .phone{width:min(var(--w),100%);aspect-ratio:1080/2400;padding:7px;border-radius:34px;background:#0b1511;box-shadow:0 30px 60px -20px rgba(3,40,30,.55),0 0 0 1px rgba(255,255,255,.08) inset;position:relative}
+  .phone::before{content:"";position:absolute;top:13px;left:50%;width:9px;height:9px;border-radius:50%;background:#0b1511;transform:translateX(-50%);z-index:1}
+  .phone img{width:100%;height:100%;border-radius:28px;object-fit:cover;object-position:top}
+</style>

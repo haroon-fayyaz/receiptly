@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import icon from '../assets/icon.png';
+import { SITE } from '../config';
+---
+<footer class="ft">
+  <div class="wrap row">
+    <div class="about">
+      <a class="brand" href="/"><Image src={icon} alt="" width={32} height={32} /><span>{SITE.name}</span></a>
+      <p>{SITE.tagline}</p>
+      <p class="fine">Receiptly helps you organize records. It does not provide tax advice. Check your numbers with a qualified tax professional.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/support">Support</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap copy">© {new Date().getFullYear()} {SITE.name}. All rights reserved.</div>
+</footer>
+<style>
+  .ft{background:var(--night);color:#cfe9de;padding:56px 0 28px;margin-top:0}
+  .row{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+  .about{max-width:420px;display:grid;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font:700 1.2rem var(--serif)}
+  .brand img{border-radius:8px}
+  .fine{font-size:.85rem;opacity:.75}
+  nav{display:grid;gap:4px;align-content:start}
+  nav a{color:#cfe9de;text-decoration:none;padding:8px 0;min-height:44px;display:flex;align-items:center}
+  nav a:hover{color:#fff;text-decoration:underline}
+  .copy{margin-top:32px;padding-top:20px;border-top:1px solid rgba(167,243,208,.18);font-size:.85rem;opacity:.75}
+</style>
