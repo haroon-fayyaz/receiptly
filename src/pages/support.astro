@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { url } from '../config';
 
 const faqs = [
   ['Do I need an account?', 'No. You can capture, view, edit, search and export receipts without signing in. If you decline sign-in, your data stays on your device.'],
@@ -73,7 +74,7 @@ const usage = [
           </article>
         ))}
       </div>
-      <p class="note">Need more help? A support contact has not been published yet. See the <a href="/privacy-policy">Privacy Policy</a> for how your data is handled.</p>
+      <p class="note">Need more help? A support contact has not been published yet. See the <a href={url('/privacy-policy')}>Privacy Policy</a> for how your data is handled.</p>
     </div>
   </section>
 </MainLayout>

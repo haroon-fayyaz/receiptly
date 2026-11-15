@@ -1,19 +1,19 @@
 ---
 import { Image } from 'astro:assets';
 import icon from '../assets/icon.png';
-import { SITE } from '../config';
+import { SITE, url } from '../config';
 ---
 <footer class="ft">
   <div class="wrap row">
     <div class="about">
-      <a class="brand" href="/"><Image src={icon} alt="" width={32} height={32} /><span>{SITE.name}</span></a>
+      <a class="brand" href={url('/')}><Image src={icon} alt="" width={32} height={32} /><span>{SITE.name}</span></a>
       <p>{SITE.tagline}</p>
       <p class="fine">Receiptly helps you organize records. It does not provide tax advice. Check your numbers with a qualified tax professional.</p>
     </div>
     <nav aria-label="Footer">
-      <a href="/">Home</a>
-      <a href="/support">Support</a>
-      <a href="/privacy-policy">Privacy Policy</a>
+      <a href={url('/')}>Home</a>
+      <a href={url('/support')}>Support</a>
+      <a href={url('/privacy-policy')}>Privacy Policy</a>
     </nav>
   </div>
   <div class="wrap copy">© {new Date().getFullYear()} {SITE.name}. All rights reserved.</div>

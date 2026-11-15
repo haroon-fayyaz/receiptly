@@ -7,3 +7,9 @@ export const SITE = {
   /** Policy last-updated date (update on every edit). */
   policyUpdated: '2026-11-15',
 };
+
+/** Prefix an absolute site path with the configured base (e.g. GitHub Pages sub-path). */
+export const url = (p: string) => {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  return base + (p.startsWith('/') ? p : '/' + p);
+};
